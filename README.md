@@ -7,3 +7,11 @@ Safe School is a web application that uses Machine Learning to predict floods ba
 - run pip install -r requirements.txt
 - run python app.py
 - You're Done!
+
+## Built With
+* Python
+* Flask
+* Face Detection Machine Learning Algorithms
+* Plotly 
+* Google Maps API
+* Scraped data from floodlist.com
