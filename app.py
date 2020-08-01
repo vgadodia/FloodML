@@ -3,17 +3,15 @@ import flask
 from flask import Flask, render_template, request, redirect, url_for
 import netCDF4
 import base64
-
+import pickle
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import netCDF4
+
 from matplotlib.axes import Axes
-from cartopy.mpl.geoaxes import GeoAxes
-GeoAxes._pcolormesh_patched = Axes.pcolormesh
+
 import numpy as np
 import matplotlib.path as mpath
-import cartopy.feature
+
 import matplotlib.colors as clr
 
 from training import prediction
@@ -24,6 +22,8 @@ data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'nam
 # data = [{'name':'India', "sel": ""}]
 months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
 cities = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
+
+model = pickle.load(open("model.pickle", 'rb'))
 
 @app.route("/")
 @app.route('/index.html')
@@ -91,7 +91,7 @@ def get_predicts():
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     final = prediction.get_data(latitude, longitude)
-    return render_template('predicts.html', cities=cities, temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]))
+    return render_template('predicts.html', cities=cities, temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]), pred = str(model.predict([final])[0]))
 
 if __name__ == "__main__":
     app.run(debug=True)
