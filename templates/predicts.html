@@ -185,14 +185,16 @@
                   ></i>
                 </div>
                 <h4>Flood Prediction</h4>
-                {% if pred == 0 %}
+                {% if pred == "Safe" %}
                 <h4 style="font-weight: 900;font-size: 40px;color:#41cf2e;">Safe</h4>
                   <h6 style="font-weight: 400;font-size: 20px;">According to our ML model, we did not detect any signs of a potential flood.</h6>
                 {% endif %}
-                <!-- <p class="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi sint occaecati cupiditate non provident
-                </p> -->
+
+                {% if pred == "Unsafe" %}
+                <h4 style="font-weight: 900;font-size: 40px;color:#FF002e;">Unsafe</h4>
+                  <h6 style="font-weight: 400;font-size: 20px;">According to our ML model, this area has potential risk of flooding within the next 15 days. Please take emergency measures.</h6>
+                {% endif %}
+                
               </div>
             </div>
             <div

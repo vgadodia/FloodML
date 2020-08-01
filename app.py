@@ -23,7 +23,7 @@ data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'nam
 months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
 cities = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}, {'name':'New York', "sel": ""}, {'name':'Los Angeles', "sel": ""}, {'name':'London', "sel": ""}, {'name':'Paris', "sel": ""}, {'name':'Sydney', "sel": ""}, {'name':'Beijing', "sel": ""}]
 
-# model = pickle.load(open("model.pickle", 'rb'))
+model = pickle.load(open("model.pickle", 'rb'))
 
 @app.route("/")
 @app.route('/index.html')
@@ -92,8 +92,13 @@ def get_predicts():
         latitude = data['items'][0]['position']['lat']
         longitude = data['items'][0]['position']['lng']
         final = prediction.get_data(latitude, longitude)
-        # pred = str(model.predict([final])[0])
-        pred = 0
+
+        final[4] *= 15
+        if str(model.predict([final])[0]) == "0":
+            pred = "Safe"
+        else:
+            pred = "Unsafe"
+        
         return render_template('predicts.html', cityname="Information about " + cityname, cities=cities, temp=round(final[0], 2), maxt=round(final[1], 2), wspd=round(final[2], 2), cloudcover=round(final[3], 2), percip=round(final[4], 2), humidity=round(final[5], 2), pred = pred)
     except:
         return render_template('predicts.html', cities=cities, cityname="Oops, we weren't able to retrieve data for that city.")
