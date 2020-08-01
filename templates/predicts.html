@@ -134,9 +134,10 @@
       <section id="services" class="section-bg">
         <div class="container">
           <header class="section-header">
-            <h3>Select City!</h3>
+            <h3>Select State!</h3>
+
             <p>
-              Enter a city in India to get information about it!
+              Enter a tate name in India to get information about it!
             </p>
             <div>
               <form action="/predicts.html" method="POST">
@@ -144,7 +145,7 @@
                   type="text"
                   id="fname"
                   name="firstname"
-                  placeholder="Enter City Name"
+                  placeholder="Enter State Name"
                 />
 
                 <input type="submit" value="Submit" />
@@ -163,20 +164,30 @@
       <section id="about">
         <div class="container">
           <header class="section-header">
-            <h3>Info about city!</h3>
-            <p>
-              Info about city!
-            </p>
+            <h3>Info about state!</h3>
           </header>
 
           <div class="row">
-            <p>Info: {{ message }}</p>
+            <p>
+              <b>Info:</b><br />
+
+              temp: {{ temp }}
+              <br />
+              maxt: {{ maxt }}<br />
+
+              wspd: {{ wspd }}<br />
+
+              cloudcover: {{ cloudcover }}<br />
+
+              percip: {{ percip }}<br />
+
+              humidity: {{ humidity }}<br />
+            </p>
           </div>
         </div>
       </section>
       <!-- #about -->
     </main>
-
     <!--==========================
     Footer
   ============================-->

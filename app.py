@@ -33,7 +33,7 @@ def get_predicts():
     cityname = request.form["firstname"]
     URL = "https://geocode.search.hereapi.com/v1/geocode"
     location = cityname
-    api_key = 'kDmciXIzDUPncHWYeZtvJ3rdMbLc0w1s8-dxCAhtO2Y' # Acquire from developer.here.com
+    api_key = 'Bwv2FJJQHT4FTQBWFC7IEKRE49lNYtrAti6NK7uJVCY' # Acquire from developer.here.com
     PARAMS = {'apikey':api_key,'q':location} 
     # sending get request and saving the response as response object 
     r = requests.get(url = URL, params = PARAMS) 
@@ -41,7 +41,7 @@ def get_predicts():
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     final = prediction.get_data(latitude, longitude)
-    return render_template('predicts.html', message="This will be your desire info about "+str(final))
+    return render_template('predicts.html', temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]))
 
 if __name__ == "__main__":
     app.run(debug=True)
