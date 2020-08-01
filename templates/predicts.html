@@ -135,26 +135,28 @@
       <section id="services" class="section-bg">
         <div class="container">
           <header class="section-header">
-            <h3>Select State!</h3>
+            <h3>Select City!</h3>
 
             <p>
-              Enter a tate name in India to get information about it!
+              Select a city name to get information about it!
             </p>
-            <div>
-              <form action="/predicts.html" method="POST">
-                <input
-                  type="text"
-                  id="fname"
-                  name="firstname"
-                  placeholder="Enter State Name"
-                />
-
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
           </header>
 
-          <div class="row"></div>
+          <div class="row">
+            <div class="col-lg-12" align="center">
+              <form class="form-inline" method="POST" action="predicts.html" style="display: inline-block;">
+                <div class="form-group">
+                  <div class="input-group">
+                    <select name="place" class="selectpicker form-control" style="width:150px;">
+                      {% for item in cities %}
+                      <option value="{{ item.name }}" {{ item.sel }}>{{ item.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-default" style="margin-left:15px;margin-top:8px;background-color:#1bb1dc;color:white;">Go</button>
+                </div>
+              </form>
+            </div>
         </div>
       </section>
       <!-- #services -->

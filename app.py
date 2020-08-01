@@ -23,6 +23,7 @@ app = flask.Flask(__name__)
 data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
 # data = [{'name':'India', "sel": ""}]
 months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
+cities = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
 
 @app.route("/")
 @app.route('/index.html')
@@ -70,11 +71,16 @@ def satelliteimages():
 
 @app.route('/predicts.html')
 def predicts():
-    return render_template('predicts.html')
+    return render_template('predicts.html', cities=cities)
 
 @app.route('/predicts.html', methods=["GET", "POST"])
 def get_predicts():
-    cityname = request.form["firstname"]
+    cityname = request.form.get('place')
+    cities = cities = [{'name':'Delhi', "sel": ""}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
+    for item in cities:
+        if item['name'] == cityname:
+            item['sel'] = 'selected'
+    print(cityname)
     URL = "https://geocode.search.hereapi.com/v1/geocode"
     location = cityname
     api_key = 'Bwv2FJJQHT4FTQBWFC7IEKRE49lNYtrAti6NK7uJVCY' # Acquire from developer.here.com
@@ -85,7 +91,7 @@ def get_predicts():
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     final = prediction.get_data(latitude, longitude)
-    return render_template('predicts.html', temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]))
+    return render_template('predicts.html', cities=cities, temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]))
 
 if __name__ == "__main__":
     app.run(debug=True)
