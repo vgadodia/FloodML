@@ -1,7 +1,6 @@
 """Web app."""
 import flask
 from flask import Flask, render_template, request, redirect, url_for
-<<<<<<< HEAD
 import netCDF4
 import base64
 
@@ -17,15 +16,13 @@ import matplotlib.path as mpath
 import cartopy.feature
 import matplotlib.colors as clr
 
-=======
 from training import prediction
 import requests
->>>>>>> 74b44a2c6a0f483c2cdaa2db5e13daf6089744c0
 app = flask.Flask(__name__)
 
 data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
 # data = [{'name':'India', "sel": ""}]
-months = [{"name":"January", "sel": ""}, {"name":"February", "sel": ""}, {"name":"March", "sel": ""}, {"name":"April", "sel": ""}, {"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
+months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
 
 @app.route("/")
 @app.route('/index.html')
@@ -43,14 +40,18 @@ def heatmaps():
 
 @app.route('/satellite.html')
 def satellite():
-    return render_template('satellite.html', data=data, image="processed_satellite_images/Delhi_July.png", months=months, text="Delhi in January 2020")
+    direc = "processed_satellite_images/Delhi_July.png"
+    with open(direc, "rb") as image_file:
+        image = base64.b64encode(image_file.read())
+    image = image.decode('utf-8')
+    return render_template('satellite.html', data=data, image_file=image, months=months, text="Delhi in January 2020")
 
 @app.route('/satellite.html', methods=['GET', 'POST'])
 def satelliteimages():
     place = request.form.get('place')
     date = request.form.get('date')
     data = [{'name':'Delhi', "sel": ""}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
-    months = [{"name":"January", "sel": ""}, {"name":"February", "sel": ""}, {"name":"March", "sel": ""}, {"name":"April", "sel": ""}, {"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": ""}]
+    months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": ""}]
     for item in data:
         if item["name"] == place:
             item["sel"] = "selected"
@@ -64,8 +65,8 @@ def satelliteimages():
     direc = "processed_satellite_images/{}_{}.png".format(place, date)
     with open(direc, "rb") as image_file:
         image = base64.b64encode(image_file.read())
-    print(image)
-    return render_template('satellite.html', data=data, image=image, months=months, text=text)
+    image = image.decode('utf-8')
+    return render_template('satellite.html', data=data, image_file=image, months=months, text=text)
 
 @app.route('/predicts.html')
 def predicts():

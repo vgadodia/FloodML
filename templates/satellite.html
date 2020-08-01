@@ -137,8 +137,8 @@
 
             <div class="col-lg-12" align="center">
               <h3>{{ text }}</h3>
-              <img src="data:image/png;base64, {{ image }}" />
-              <img width=800 src="{{ url_for('static', filename='processed_satellite_images/cbar.png') }}">
+              <img width=1000 src="data:image/png;base64, {{ image_file }}" />
+              <img style="margin-top:35px;margin-bottom:20px;" width=900 src="{{ url_for('static', filename='processed_satellite_images/cbar.png') }}">
             </div>
 
           </div>
