@@ -28,7 +28,8 @@ def get_data(lat, lon):
 
     return final
 
-
+def testConnection():
+    return "yo"
 
 
 

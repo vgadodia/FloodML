@@ -1,6 +1,7 @@
 """Web app."""
 import flask
 from flask import Flask, render_template, request, redirect, url_for
+<<<<<<< HEAD
 import netCDF4
 import base64
 
@@ -16,6 +17,10 @@ import matplotlib.path as mpath
 import cartopy.feature
 import matplotlib.colors as clr
 
+=======
+from training import prediction
+import requests
+>>>>>>> 74b44a2c6a0f483c2cdaa2db5e13daf6089744c0
 app = flask.Flask(__name__)
 
 data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
@@ -68,9 +73,18 @@ def predicts():
 
 @app.route('/predicts.html', methods=["GET", "POST"])
 def get_predicts():
-    firstname = request.form["firstname"]
-    print(firstname) 
-    return render_template('predicts.html')
+    cityname = request.form["firstname"]
+    URL = "https://geocode.search.hereapi.com/v1/geocode"
+    location = cityname
+    api_key = 'Bwv2FJJQHT4FTQBWFC7IEKRE49lNYtrAti6NK7uJVCY' # Acquire from developer.here.com
+    PARAMS = {'apikey':api_key,'q':location} 
+    # sending get request and saving the response as response object 
+    r = requests.get(url = URL, params = PARAMS) 
+    data = r.json()
+    latitude = data['items'][0]['position']['lat']
+    longitude = data['items'][0]['position']['lng']
+    final = prediction.get_data(latitude, longitude)
+    return render_template('predicts.html', temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]))
 
 if __name__ == "__main__":
     app.run(debug=True)

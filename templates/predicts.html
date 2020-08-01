@@ -104,7 +104,13 @@
           <!-- <h1 class="text-light">
             <a href="index.html" class="scrollto"><span>FloodML</span></a>
           </h1> -->
-          <a href="index.html" class="scrollto"><img style="margin-top:-5px;min-height: 50px;" src="{{ url_for('static', filename='img/logo.png') }}" alt="" class="img-fluid"></a>
+          <a href="index.html" class="scrollto"
+            ><img
+              style="margin-top: -5px; min-height: 50px;"
+              src="{{ url_for('static', filename='img/logo.png') }}"
+              alt=""
+              class="img-fluid"
+          /></a>
         </div>
 
         <nav class="main-nav float-right d-none d-lg-block">
@@ -129,9 +135,10 @@
       <section id="services" class="section-bg">
         <div class="container">
           <header class="section-header">
-            <h3>Select City!</h3>
+            <h3>Select State!</h3>
+
             <p>
-              Select city!.
+              Enter a tate name in India to get information about it!
             </p>
             <div>
               <form action="/predicts.html" method="POST">
@@ -139,7 +146,7 @@
                   type="text"
                   id="fname"
                   name="firstname"
-                  placeholder="Selected City"
+                  placeholder="Enter State Name"
                 />
 
                 <input type="submit" value="Submit" />
@@ -158,18 +165,30 @@
       <section id="about">
         <div class="container">
           <header class="section-header">
-            <h3>Info about city!</h3>
-            <p>
-              Info about city!.
-            </p>
+            <h3>Info about state!</h3>
           </header>
 
-          <div class="row"></div>
+          <div class="row">
+            <p>
+              <b>Info:</b><br />
+
+              temp: {{ temp }}
+              <br />
+              maxt: {{ maxt }}<br />
+
+              wspd: {{ wspd }}<br />
+
+              cloudcover: {{ cloudcover }}<br />
+
+              percip: {{ percip }}<br />
+
+              humidity: {{ humidity }}<br />
+            </p>
+          </div>
         </div>
       </section>
       <!-- #about -->
     </main>
-
     <!--==========================
     Footer
   ============================-->
@@ -189,10 +208,10 @@
                         alt=""
                         class="img-fluid"
                     /></a>
-                    <p style="padding-top:20px;">
+                    <p style="padding-top: 20px;">
                       FloodML is a tool that uses Machine Learning and Data
-                      Visualization to show you plots and heatmaps with
-                      realtime flood information, as well locational predictions about 
+                      Visualization to show you plots and heatmaps with realtime
+                      flood information, as well locational predictions about
                       future floods and potential damage.
                     </p>
                   </div>
