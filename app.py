@@ -23,7 +23,7 @@ data = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'nam
 months = [{"name":"May", "sel": ""}, {"name":"June", "sel": ""}, {"name":"July", "sel": "selected"}]
 cities = [{'name':'Delhi', "sel": "selected"}, {'name':'Mumbai', "sel": ""}, {'name':'Kolkata', "sel": ""}, {'name':'Bangalore', "sel": ""}, {'name':'Chennai', "sel": ""}]
 
-model = pickle.load(open("model.pickle", 'rb'))
+# model = pickle.load(open("model.pickle", 'rb'))
 
 @app.route("/")
 @app.route('/index.html')
@@ -91,7 +91,9 @@ def get_predicts():
     latitude = data['items'][0]['position']['lat']
     longitude = data['items'][0]['position']['lng']
     final = prediction.get_data(latitude, longitude)
-    return render_template('predicts.html', cities=cities, temp=str(final[0]), maxt=str(final[1]), wspd=str(final[2]), cloudcover=str(final[3]), percip=str(final[4]), humidity=str(final[5]), pred = str(model.predict([final])[0]))
+    # pred = str(model.predict([final])[0])
+    pred = 0
+    return render_template('predicts.html', cities=cities, temp=round(final[0], 2), maxt=round(final[1], 2), wspd=round(final[2], 2), cloudcover=round(final[3], 2), percip=round(final[4], 2), humidity=round(final[5], 2), pred = pred)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -169,6 +169,7 @@
               partiendo abhorreant vituperatoribus.
             </p> -->
           </header>
+          <br><br>
 
           <div class="row">
             <div
@@ -183,7 +184,10 @@
                   ></i>
                 </div>
                 <h4>Flood Prediction</h4>
-                <h4 style="font-weight: 900;font-size: 40px;">{{temp}}</h4>
+                <h4 style="font-weight: 900;font-size: 40px;">{{pred}}</h4>
+                {% if pred == 0 %}
+                  <h6 style="font-weight: 400;font-size: 20px;">According to our ML model, we did not detect any signs of a flood.</h6>
+                {% endif %}
                 <!-- <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi sint occaecati cupiditate non provident
@@ -250,7 +254,7 @@
                     style="color: #41cf2e;"
                   ></i>
                 </div>
-                <h4>Cloud Cover</h4>
+                <h4>Cloud Cover (%)</h4>
                 <h4 style="font-weight: 900;font-size: 40px;">{{ cloudcover }}</h4>
               </div>
             </div>
@@ -264,7 +268,7 @@
                 <div class="icon" style="background: #e1eeff;">
                   <i class="ion-ios-world-outline" style="color: #2282ff;"></i>
                 </div>
-                <h4>Precipitation</h4>
+                <h4>Precipitation (mm)</h4>
                 <h4 style="font-weight: 900;font-size: 40px;">{{ percip }}</h4>
               </div>
             </div>
@@ -277,7 +281,7 @@
                 <div class="icon" style="background: #ecebff;">
                   <i class="ion-ios-clock-outline" style="color: #8660fe;"></i>
                 </div>
-                <h4>Humidity</h4>
+                <h4>Humidity (%)</h4>
                 <h4 style="font-weight: 900;font-size: 40px;">{{ humidity }}</h4>
               </div>
             </div>
@@ -288,7 +292,7 @@
       <!--==========================
           About Us Section
         ============================-->
-      <section id="about">
+      <!-- <section id="about">
         <div class="container">
           <header class="section-header">
             <h3>Info about state!</h3>
@@ -314,7 +318,7 @@
             </p>
           </div>
         </div>
-      </section>
+      </section> -->
       <!-- #about -->
     </main>
     <!--==========================
