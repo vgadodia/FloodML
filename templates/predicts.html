@@ -147,13 +147,14 @@
               <form class="form-inline" method="POST" action="predicts.html" style="display: inline-block;">
                 <div class="form-group">
                   <div class="input-group">
-                    <select name="place" class="selectpicker form-control" style="width:150px;">
+                    <!-- <select name="place" class="selectpicker form-control" style="width:150px;">
                       {% for item in cities %}
                       <option value="{{ item.name }}" {{ item.sel }}>{{ item.name }}</option>
                       {% endfor %}
-                    </select>
+                    </select> -->
+                    <input type="text" name="city" placeholder="Enter a city"></input>
                   </div>
-                  <button type="submit" class="btn btn-default" style="margin-left:15px;margin-top:8px;background-color:#1bb1dc;color:white;">Go</button>
+                  <button type="submit" class="btn btn-default" style="margin-left:15px;height:50px;background-color:#1bb1dc;color:white;">Go</button>
                 </div>
               </form>
             </div>
@@ -163,7 +164,7 @@
       <section id="services" class="section-bg">
         <div class="container">
           <header class="section-header">
-            <h3>Information about the city</h3>
+            <h3>{{ cityname }}</h3>
             <!-- <p>
               Laudem latine persequeris id sed, ex fabulas delectus quo. No vel
               partiendo abhorreant vituperatoribus.
