@@ -8,12 +8,11 @@ def augment(k):
 
     return final + [int(k[7])]
 
-data1 = open('data.csv', mode='r')
 data0 = open('data1.csv', mode='r')
-
-reader1 = csv.reader(data1)
+data1 = open('data.csv', mode='r')
 
 reader0 = csv.reader(data0)
+reader1 = csv.reader(data1)
 
 f = open('final_data.csv', mode='w', newline = '')
 writer = csv.writer(f, delimiter=',')

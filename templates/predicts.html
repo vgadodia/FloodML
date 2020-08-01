@@ -104,7 +104,13 @@
           <!-- <h1 class="text-light">
             <a href="index.html" class="scrollto"><span>FloodML</span></a>
           </h1> -->
-          <a href="index.html" class="scrollto"><img style="margin-top:-5px;min-height: 50px;" src="{{ url_for('static', filename='img/logo.png') }}" alt="" class="img-fluid"></a>
+          <a href="index.html" class="scrollto"
+            ><img
+              style="margin-top: -5px; min-height: 50px;"
+              src="{{ url_for('static', filename='img/logo.png') }}"
+              alt=""
+              class="img-fluid"
+          /></a>
         </div>
 
         <nav class="main-nav float-right d-none d-lg-block">
@@ -130,7 +136,7 @@
           <header class="section-header">
             <h3>Select City!</h3>
             <p>
-              Select city!.
+              Enter a city in India to get information about it!
             </p>
             <div>
               <form action="/predicts.html" method="POST">
@@ -138,7 +144,7 @@
                   type="text"
                   id="fname"
                   name="firstname"
-                  placeholder="Selected City"
+                  placeholder="Enter City Name"
                 />
 
                 <input type="submit" value="Submit" />
@@ -188,10 +194,10 @@
                         alt=""
                         class="img-fluid"
                     /></a>
-                    <p style="padding-top:20px;">
+                    <p style="padding-top: 20px;">
                       FloodML is a tool that uses Machine Learning and Data
-                      Visualization to show you plots and heatmaps with
-                      realtime flood information, as well locational predictions about 
+                      Visualization to show you plots and heatmaps with realtime
+                      flood information, as well locational predictions about
                       future floods and potential damage.
                     </p>
                   </div>

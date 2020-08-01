@@ -4,8 +4,7 @@ import pickle
 import requests
 
 def get_data(lat, lon):
-    
-    
+
     k = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=" + str(lat) + "%2C%20" + str(lon) + "&aggregateHours=24&unitGroup=us&shortColumnNames=false&contentType=json&key=QG54K69BV36JZ7G6FD46BBY57"
     x = requests.get(k).json()['locations']
     for i in x:

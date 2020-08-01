@@ -1,8 +1,8 @@
 import pandas as pd
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
-import pickle
 
 data = pd.read_csv("final_data.csv")
 y = data['class']
@@ -16,6 +16,6 @@ classifier.fit(X_train, y_train)
 pred = classifier.predict(X_test)
 accuracy = accuracy_score(y_test, pred)
 
-print("accuracy: " + str(accuracy * 100) + "%")
+print(str(accuracy * 100) + "%")
 
 pickle.dump(classifier, open('model.pickle', 'wb'))
