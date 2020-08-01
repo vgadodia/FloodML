@@ -1,19 +1,9 @@
 """Web app."""
 import flask
 from flask import Flask, render_template, request, redirect, url_for
-import netCDF4
-import base64
+
 import pickle
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-
-from matplotlib.axes import Axes
-
-import numpy as np
-import matplotlib.path as mpath
-
-import matplotlib.colors as clr
-
+import base64
 from training import prediction
 import requests
 app = flask.Flask(__name__)
