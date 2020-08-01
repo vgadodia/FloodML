@@ -25,7 +25,7 @@ def heatmaps():
 
 @app.route('/predicts.html')
 def predicts():
-    return render_template('predicts.html')
+    return render_template('predicts.html', message="This will be your desire info about")
 
 @app.route('/predicts.html', methods=["GET", "POST"])
 def get_predicts():
