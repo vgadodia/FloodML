@@ -15,3 +15,5 @@ Safe School is a web application that uses Machine Learning to predict floods ba
 * Plotly 
 * Google Maps API
 * Scraped data from floodlist.com
+
+By: Veer, Mihir and Nand
