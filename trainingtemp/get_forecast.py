@@ -9,9 +9,7 @@ def get_data(lat, lon):
     x = requests.get(k).json()['locations']
     for i in x:
         y = x[i]['values']
-
     final = [0, 0, 0, 0, 0, 0]
-
     for j in y:
         final[0] += j['temp']
         if j['maxt'] > final[1]:
@@ -24,7 +22,6 @@ def get_data(lat, lon):
     final[2] /= 15
     final[3] /= 15
     final[5] /= 15
-
     return final
 
 
