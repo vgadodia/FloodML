@@ -30,15 +30,3 @@ def get_data(lat, lon):
 
 def testConnection():
     return "yo"
-
-
-
-f = open('cities.csv', 'r', encoding='UTF-8')
-ff = open('plotting.csv', mode='w', newline = '')
-writer = csv.writer(ff, delimiter=',')
-
-r = csv.reader(f)
-
-for row in r:
-    print(row)
-    writer.writerow(get_data(row[1], row[2]))
