@@ -8,6 +8,7 @@ FloodML is a web application that uses Machine Learning to predict floods based 
 - run python app.py
 - You're Done!
 
+
 ## Inspiration
 Floods are one of the most dangerous and frequent natural disasters in the world.
 
