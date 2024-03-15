@@ -35,7 +35,7 @@ def satellite():
     with open(direc, "rb") as image_file:
         image = base64.b64encode(image_file.read())
     image = image.decode('utf-8')
-    return render_template('satellite.html', data=data, image_file=image, months=months, text="Delhi in January 2020")
+    return render_template('satellite.html', data=data, image_file=image, months=months, text="Delhi in January 2024")
 
 @app.route('/satellite.html', methods=['GET', 'POST'])
 def satelliteimages():
@@ -51,7 +51,7 @@ def satelliteimages():
         if item["name"] == date:
             item["sel"] = "selected"
 
-    text = place + " in " + date + " 2020"
+    text = place + " in " + date + " 2024"
 
     direc = "processed_satellite_images/{}_{}.png".format(place, date)
     with open(direc, "rb") as image_file:
@@ -74,7 +74,7 @@ def get_predicts():
         print(cityname)
         URL = "https://geocode.search.hereapi.com/v1/geocode"
         location = cityname
-        api_key = 'Bwv2FJJQHT4FTQBWFC7IEKRE49lNYtrAti6NK7uJVCY' # Acquire from developer.here.com
+        api_key = 'Dei-HIxMpEXmVWJOrkvpySOx9R1IpRKvIh5AuryXAQE' # Acquire from developer.here.com
         PARAMS = {'apikey':api_key,'q':location} 
         # sending get request and saving the response as response object 
         r = requests.get(url = URL, params = PARAMS) 
